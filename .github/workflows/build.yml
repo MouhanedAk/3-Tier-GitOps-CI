@@ -76,9 +76,11 @@ jobs:
           password: ${{ vars.DOCKERHUB_PASSWORD }}
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-actions@v3
+        uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+      - name: Build and Push Docker image (backend)
+        uses: docker/build-push-action@v6
         with:
           context: ./api
           file: ./api/Dockerfile
@@ -100,9 +102,11 @@ jobs:
           password: ${{ vars.DOCKERHUB_PASSWORD }}
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-actions@v3
+        uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+      - name: Build and Push Docker image (frontend)
+        uses: docker/build-push-action@v6
         with:
           context: ./client
           file: ./client/Dockerfile
